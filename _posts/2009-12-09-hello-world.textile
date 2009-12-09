@@ -1,0 +1,10 @@
+---
+title: Hello World!
+layout: post
+---
+
+And here it finally is, my own blog. With a strong influence from my work as software engineer, I will mainly blog about "MDSD":http://se-radio.net/podcast/2006-02/episode-5-model-driven-software-development-pt-1 and "Eclipse":http://eclipse.org/ related stuff, but also about other topics that might cross my path. I hope someone besides me will enjoy it ;-)
+
+This blog is published using "github pages":http://pages.github.com/, i.e. the sources are part of a special "git":http://www.git-scm.com/ "repository":http://github.com/DanielWeber/danielweber.github.com/. I'm not sure if it will remain that way, but it works pretty well so far. Check "Blogging Like a Hacker":http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html and the "jekyll wiki":http://wiki.github.com/mojombo/jekyll for details.
+
+Have fun and stay tuned!
