@@ -1,0 +1,57 @@
+---
+title: Bisecting History
+layout: post
+---
+
+p=. !/images/cut-in-half.jpg!
+
+h3. On your marks...
+
+Some people "noticed":http://www.eclipse.org/forums/index.php?t=msg&th=157284&start=0&S=4d190433f14336676a612f80b6330c4e that somewhere between two versions, performance of Xtend has degraded. To me (wanting to help), this seemed like a perfect opportunity to use "git bisect":http://www.kernel.org/pub/software/scm/git/docs/git-bisect.html together with the "Eclipse git mirrors":http://dev.eclipse.org/git/. I'm going to describe how this helped to quickly find the needle in the revision haystack.
+
+h3. ...Ready...
+
+Clones of the necessary "Eclipse Git repositories":http://dev.eclipse.org/git/ already existed on my disk as I ran
+
+{% highlight bash %}
+git clone git://dev.eclipse.org/org.eclipse.emf/org.eclipse.emf.git
+git clone git://dev.eclipse.org/org.eclipse.m2t/org.eclipse.m2t.git
+{% endhighlight %}
+
+a few days ago.
+
+h3. ...Set...
+
+All I needed was an indicator to test whether a certain revision was good (i.e. running as fast as in 0.7.2) or bad (i.e. running significantly slower). A "demo workflow":http://code.google.com/p/emfmodelvisualizer/source/browse/galileo/trunk/org.openarchitectureware.vis.graphviz.demo/src/visualizeEcore.mwe from the "emfmodelvisualizer project":http://code.google.com/p/emfmodelvisualizer/ completed in about 1.5 seconds with 0.7.2, but took 3 seconds with the current development version.
+
+h3. ...Go!
+
+This was good enough for me, so I started bisecting:
+
+{% highlight bash %}
+git bisect start Galileo_SR2 HEAD -- org.eclipse.xpand/plugins/
+{% endhighlight %}
+
+This tells git to start a bisection process, with @Galileo_SR2@ being the last known good revision and @HEAD@ being a bad one. As I suspected some changes in Xtend/Xpand to be responsible, I limited the scope to @org.eclipse.xpand/plugins/@, so git bisect would only test commits which changed files in that area.
+
+{% highlight bash %}
+Bisecting: 27 revisions left to test after this (roughly 5 steps)
+{% endhighlight %}
+
+From this point on, git guided me through a "binary search":http://en.wikipedia.org/wiki/Binary_search_algorithm for the commit which introduced the problem. All I had to do was to tell git whether the current revision was good
+
+{% highlight bash %}
+git bisect good
+{% endhighlight %}
+
+or bad
+
+{% highlight bash %}
+git bisect bad
+{% endhighlight %}
+
+After about 4 minutes of "Eclipse refresh, run workflow, git bisect good/bad" cycles git pointed me to the commit that caused the trouble, finally leading to "Bug 297053":https://bugs.eclipse.org/bugs/show_bug.cgi?id=297053 .
+
+Of course you can do this manually with any other SCM system, but git's guidance and fast local switching between revisions made it an easy thing to do. It would have been even more comfortable if the decision about a revision's goodness was automated. In this case, git would be able to do this "all alone":http://www.kernel.org/pub/software/scm/git/docs/git-bisect.html#_bisect_run, allowing me to lean back and enjoy a cup of coffee in the meantime. Check out the "git bisect documentation":http://www.kernel.org/pub/software/scm/git/docs/git-bisect.html for more details.
+
+I'm really looking forward to "full git support":https://bugs.eclipse.org/bugs/show_bug.cgi?id=257706 on Eclipse.org.
