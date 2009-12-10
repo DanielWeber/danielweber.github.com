@@ -2,7 +2,6 @@
   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
   <head>
-    <meta name="google-site-verification" content="_ZF2MiwodBQwiIJ_s_Lqhasaz6on1-iprQ2UKr4VhWo" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>a web(er)log - {{ page.title }}</title>
     <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen" charset="utf-8"/>
@@ -28,5 +27,15 @@
     <div id='footer'>
       Theme and code inspired by <a href="http://github.com/mbleigh">Michael Bleigh</a>. Powered by <a href='http://github.com/mojombo/jekyll'>Jekyll</a> and <a href="http://kuler.adobe.com/">kuler</a>.
     </div>
+    <!-- let google analytics track my pages -->
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-12001130-1");
+      pageTracker._trackPageview();
+      } catch(err) {}</script>    
   </body>
 </html>
