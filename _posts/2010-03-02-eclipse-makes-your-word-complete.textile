@@ -1,0 +1,19 @@
+---
+title: Eclipse Makes your Word Complete
+layout: post
+---
+
+This is about a simple yet very useful Eclipse command which is, as far as I can tell, not as well known as its "big brother" Content Assist.
+
+I'm writing about Word Completion. Emacs users might know this as "hippie-expand":http://www.emacswiki.org/emacs/HippieExpand or "dabbrev-expand":http://www.emacswiki.org/emacs/DynamicAbbreviations. It completes words simply by looking for similar words in the same editor, totally unaware of the current programming language and context (which method and class you're in etc.). Instead of showing a list of proposals, the first match is inserted immediately and you can cycle through the different matches by repeatedly pressing the shortcut[1]:
+
+bq. Co -> Completion -> Content -> Co -> Completion -> ...
+
+Yes, it lacks some of Content Assist's intelligence. But because all it needs is a pile of words it works pretty much everywhere: in any Eclipse text editor, inside comments and string literals(!), even while writing this blog post using the "WikiText":http://wiki.eclipse.org/Mylyn/Incubator/WikiText editor. And it is lightning-fast as it does not analyze any context and consult an index or the like.
+
+Just go ahead and try it next time Ctrl+Space lets you down :).
+
+
+fn1. By default it is bound to Alt+/, which is a nightmare on German keyboards. Feel free to use another keybinding, I set it to Ctrl+Enter.
+
+
